@@ -1,5 +1,5 @@
 import Image from "next/image";
-import BlockChain from "../images/aboutApp.jpg";
+import BlockChain from "../images/aboutApp.png";
 
 
 const AboutApp = () => {

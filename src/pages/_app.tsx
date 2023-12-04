@@ -1,25 +1,49 @@
-import type { NextPage } from "next";
-import Head from "next/head";
-import Layout from "../layouts/Layout";
+import "../styles/globals.css";
+import "@rainbow-me/rainbowkit/styles.css";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import type { AppProps } from "next/app";
+import { configureChains, createConfig, WagmiConfig } from "wagmi";
+import { polygonMumbai, polygon, mainnet } from "wagmi/chains";
+import { publicProvider } from "wagmi/providers/public";
 
-const Home: NextPage = () => {
+
+const { chains, publicClient, webSocketPublicClient } = configureChains(
+ [
+   polygonMumbai,
+   polygon,
+   mainnet,
+   ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
+     ? [polygonMumbai]
+     : []),
+ ],
+ [publicProvider()]
+);
+
+
+const { connectors } = getDefaultWallets({
+ appName: "RainbowKit App",
+ projectId: "YOUR_PROJECT_ID",
+ chains,
+});
+
+
+const wagmiConfig = createConfig({
+ autoConnect: true,
+ connectors,
+ publicClient,
+ webSocketPublicClient,
+});
+
+
+function MyApp({ Component, pageProps }: AppProps) {
  return (
-   <>
-     <Head>
-       <title>AgriMartX</title>
-       <meta name="description" content="AgriMartX" />
-       <link rel="icon" href="/favicon.ico" />
-     </Head>
-    
-     <Layout>
-       <div>
-        
-       </div>
-
-
-     </Layout>
-   </>
+   <WagmiConfig config={wagmiConfig}>
+     <RainbowKitProvider chains={chains}>
+       <Component {...pageProps} />
+     </RainbowKitProvider>
+   </WagmiConfig>
  );
-};
+}
 
-export default Home;
+
+export default MyApp;
