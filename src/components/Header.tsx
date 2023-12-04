@@ -34,8 +34,8 @@ const Header = () => {
            </li>
          </ul>
          <ConnectButton
-             //showBalance={false}
-             chainStatus="none"
+            showBalance={false}
+            //  chainStatus="none"
            ></ConnectButton>
        </nav>
      </div>
