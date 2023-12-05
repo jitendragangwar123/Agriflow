@@ -28,7 +28,7 @@ const Header = () => {
            <li className=" mr-6 text-complementary ">
              <Link href="/">
                <h3 className="relative inline-block text-complementary transition-all after:absolute after:bottom-0 after:left-1/2 after:block after:h-0.5 after:w-0 after:bg-neutral after:transition-all after:content-[''] hover:text-neutral hover:after:left-0 hover:after:w-full">
-                 MarketPlace
+                 
                </h3>
              </Link>
            </li>
