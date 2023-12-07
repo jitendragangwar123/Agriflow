@@ -75,23 +75,3 @@ export default function RegisterNewProducer() {
   );
 }
 
-// async function fetchProducerByAddr() {
-//   try {
-//     const pName = await readContract({
-//       address: AGRIMART_CONTRACT_ADDRESS,
-//       abi: abi,
-//       functionName: "producers",
-//       args: [addr],
-//     });
-//     addToast(`Producer Name: ${pName}`, {
-//       appearance: "info",
-//       autoDismiss: true,
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     addToast("Error fetching producer name", {
-//       appearance: "error",
-//       autoDismiss: true,
-//     });
-//   }
-// }
