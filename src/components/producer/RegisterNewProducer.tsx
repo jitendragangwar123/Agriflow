@@ -167,7 +167,7 @@ export default function RegisterNewProducer() {
        appearance: "success",
        autoDismiss: true,
      });
-     displyTotalProduct(); // Update the product list after adding new products
+     displyTotalProduct(); 
    } catch (error) {
      console.error(error);
      addToast("Error adding new products", {
@@ -240,7 +240,7 @@ export default function RegisterNewProducer() {
        appearance: "success",
        autoDismiss: true,
      });
-     displyTotalProduct(); // Update the product list after changing the price
+     displyTotalProduct(); 
    } catch (error) {
      console.error(error);
      addToast("Error updating the new price", {
