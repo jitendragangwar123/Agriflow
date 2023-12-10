@@ -4,14 +4,14 @@ require('dotenv').config();
 async function main() {
     const url = process.env.MUMBAI_URL;
     let privateKey = process.env.PRIVATE_KEY;
-    let artifacts = await hre.artifacts.readArtifact("AgriMart");
+    let artifacts = await hre.artifacts.readArtifact("Agriflow");
     const provider = new ethers.providers.JsonRpcProvider(url);
     let wallet = new ethers.Wallet(privateKey, provider);
     // Create an instance of a Faucet Factory
     let factory = new ethers.ContractFactory(artifacts.abi, artifacts.bytecode, wallet);
-    let agriMart = await factory.deploy();
-    console.log("AgriMart address:", agriMart.address);
-    await agriMart.deployed();
+    let agriflow = await factory.deploy();
+    console.log("Agriflow address:", agriflow.address);
+    await agriflow.deployed();
 }
 
 main()

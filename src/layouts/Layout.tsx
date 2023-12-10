@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
      <Header />
      <AboutApp/>
      <Footer/>
-     <main className="container mx-auto p-4">{children}</main>
+     <main className="container mx-auto bg-gray-200">{children}</main>
    </div>
  );
 };
