@@ -5,7 +5,7 @@ import { useAccount, useContractRead } from "wagmi";
 import { readContract, waitForTransaction, writeContract } from "wagmi/actions";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
-import { useSpring, animated } from "react-spring";
+//import { useSpring, animated } from "react-spring";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -469,23 +469,22 @@ export default function RegisterNewProducer() {
     setLoading(false);
   };
 
-  const formContainerAnimation = useSpring({
-    opacity: 1,
-    from: { opacity: 0 },
-    delay: 200,
-  });
+  // const formContainerAnimation = useSpring({
+  //   opacity: 1,
+  //   from: { opacity: 0 },
+  //   delay: 200,
+  // });
 
   return (
-    <animated.div
-      style={formContainerAnimation}
+    <div
       className="w-full text-center py-5 bg-gradient-to-b from-gray-800 to-black text-white"
     >
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
       <div className="flex flex-row items-center justify-center h-screen">
-        <animated.div
-          style={formContainerAnimation}
+        <div
+         
           className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 ml-20 max-w-2xl"
         >
           {!isRegistered && (
@@ -515,10 +514,9 @@ export default function RegisterNewProducer() {
               </button>
             </div>
           )}
-        </animated.div>
+        </div>
 
-        <animated.div
-          style={formContainerAnimation}
+        <div
           className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 mr-20 max-w-2xl"
         >
           <div className="p-16">
@@ -574,7 +572,7 @@ export default function RegisterNewProducer() {
               {loading ? "Adding Products..." : "Add New Products"}
             </button>
           </div>
-        </animated.div>
+        </div>
       </div>
 
       {/* Display Products Table */}
@@ -618,6 +616,6 @@ export default function RegisterNewProducer() {
           </div>
         </div>
       )}
-    </animated.div>
+    </div>
   );
 }
