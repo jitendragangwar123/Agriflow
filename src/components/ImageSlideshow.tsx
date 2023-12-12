@@ -1,13 +1,13 @@
 // components/ImageSlideshow.js
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import styles from './ImageSlideshow.module.css';
-import one from '../images/1.png';
-import two from '../images/2.png';
-import three from '../images/3.png';
-import four from '../images/4.png';
-import five from '../images/5.png';
-import six from '../images/6_1.png';
+import React, { useState, useEffect } from "react";
+import Image from "next/image";
+import styles from "./ImageSlideshow.module.css";
+import one from "../images/1.png";
+import two from "../images/2.png";
+import three from "../images/3.png";
+import four from "../images/4.png";
+import five from "../images/5.png";
+import six from "../images/6_1.png";
 // import seven from '../images/1.png';
 // import eight from '../images/1.png';
 // import nine from '../images/1.png';
@@ -22,12 +22,7 @@ import six from '../images/6_1.png';
 
 const ImageSlideshow = () => {
   const [index, setIndex] = useState(0);
-  const images = [one,
-  two,
-  three,
-  four,
-  five,
-  six]
+  const images = [one, two, three, four, five, six];
   // seven,
   // eight,
   // nine,
@@ -51,13 +46,11 @@ const ImageSlideshow = () => {
   return (
     <div className={styles.slideshow}>
       {images.map((image, i) => (
-        <div key={i} className={`${styles.slide} ${i === index ? styles.active : ''}`}>
-          <Image
-            src={image}
-            alt={`Slide ${i + 1}`}
-            width={800}
-            height={400}
-          />
+        <div
+          key={i}
+          className={`${styles.slide} ${i === index ? styles.active : ""}`}
+        >
+          <Image src={image} alt={`Slide ${i + 1}`} width={800} height={400} />
         </div>
       ))}
     </div>

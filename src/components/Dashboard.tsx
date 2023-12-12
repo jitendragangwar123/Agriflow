@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 const Dashboard = () => {
-  const [text, setText] = useState('');
-  const originalText = 'Harvesting Global Wellbeing: Cultivating a Fresh Tomorrow.';
+  const [text, setText] = useState("");
+  const originalText =
+    "Harvesting Global Wellbeing: Cultivating a Fresh Tomorrow.";
 
   useEffect(() => {
     let i = 0;
@@ -30,10 +31,14 @@ const Dashboard = () => {
   return (
     <div>
       <h1>
-        {text.includes('Cultivating a Fresh Tomorrow.') ? (
+        {text.includes("Cultivating a Fresh Tomorrow.") ? (
           <>
-            <span style={{ color: 'white' }}>Harvesting Global Wellbeing: </span>
-            <span className='text-green-500'>Cultivating a Fresh Tomorrow.</span>
+            <span style={{ color: "white" }}>
+              Harvesting Global Wellbeing:{" "}
+            </span>
+            <span className="text-green-500">
+              Cultivating a Fresh Tomorrow.
+            </span>
           </>
         ) : (
           text
