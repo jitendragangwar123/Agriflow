@@ -42,12 +42,6 @@ const AboutApp = () => {
               management strategies.
             </p>
           </div>
-          {/* <div> */}
-
-          {/* </div> */}
-          {/* <div className = "max-md:py-3">
-           <Image src = {BlockChain} alt = "blockchain" width = "1000" height = "550" />
-         </div> */}
           <ImageSlideshow />
         </div>
       </div>
