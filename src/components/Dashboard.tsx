@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 const Dashboard = () => {
   const [text, setText] = useState("");
   const originalText =

@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import companyLogo from "../images/agriflow_logo.png";
-
 const Header = () => {
   return (
     <header className="bg-white">
