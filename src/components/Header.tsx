@@ -5,13 +5,11 @@ import companyLogo from "../images/agriflow_logo.png";
 import ThemeSwitch from "./ThemeSwitch";
 const Header = () => {
   return (
-    <header >
+    <header>
       <div className="container mt-0 mb-0 ml-0 mr-0 flex items-center justify-between">
-        <h1 className="ml-2 mt-1">
-          <Link href="/">
-            <Image src={companyLogo} alt="Agriflow" width="300" height="100" />
-          </Link>
-        </h1>
+        <Link href="/">
+          <Image src={companyLogo} alt="Agriflow" width="220" height="100" />
+        </Link>
         <nav className="flex items-center">
           <ul className="flex gap-2 text-2xl font-semibold">
             <li className="mr-6 text-complementary">
@@ -42,14 +40,14 @@ const Header = () => {
                 </h3>
               </Link>
             </li>
-            <li className="mr-6 text-complementary">
+            <li className="mr-6">
               <ConnectButton
-                //showBalance={false}
+                showBalance={false}
                 chainStatus="none"
               ></ConnectButton>
             </li>
-            <li className="mr-6 mt-2 text-complementary">
-              <ThemeSwitch/>
+            <li className="mr-6 mt-2">
+              <ThemeSwitch />
             </li>
           </ul>
         </nav>
