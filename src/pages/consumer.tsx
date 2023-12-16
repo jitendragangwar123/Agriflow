@@ -6,7 +6,6 @@ import RegisterNewConsumer from "../components/consumer/RegisterNewConsumer";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 
-
 const RegistrationPage: NextPage = () => {
  return (
    <>
@@ -23,6 +22,5 @@ const RegistrationPage: NextPage = () => {
    </>
  );
 };
-
 
 export default RegistrationPage;

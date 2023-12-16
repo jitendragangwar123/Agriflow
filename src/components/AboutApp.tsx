@@ -9,7 +9,7 @@ const AboutApp = () => {
 
   return (
     <>
-      <div className="w-full py-14 bg-gradient-to-b from-gray-800 to-black text-white">
+      <div className="w-full py-14 bg-gradient-to-b from-gray-400 to-black text-white">
         <h1 className="text-4xl pt-8 pb-4 px-24 font-semibold max-md:text-center text-white">
           <Dashboard /> <span className="text-blue-500"></span>
         </h1>
