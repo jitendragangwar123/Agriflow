@@ -6,17 +6,14 @@ const Home: NextPage = () => {
  return (
    <>
      <Head>
-       <title>AgriMartX</title>
-       <meta name="description" content="AgriMartX" />
+       <title>AgriFlow</title>
+       <meta name="description" content="AgriFlow" />
        <link rel="icon" href="/favicon.ico" />
      </Head>
     
      <Layout>
        <div>
-        
        </div>
-
-
      </Layout>
    </>
  );
