@@ -1,7 +1,7 @@
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AboutApp from "../components/AboutApp";
-import { Providers } from "../pages/providers";
+import { Providers } from "../components/providers";
 
 interface LayoutProps {
   children: React.ReactNode;
