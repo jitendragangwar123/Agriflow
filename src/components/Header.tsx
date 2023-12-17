@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import companyLogo from "../images/agriflow_logo.png";
 import ThemeSwitch from "./ThemeSwitch";
+import { Providers } from "./providers";
 const Header = () => {
   return (
     <header>
@@ -47,7 +48,10 @@ const Header = () => {
               ></ConnectButton>
             </li>
             <li className="mr-6 mt-2">
-              <ThemeSwitch />
+              <Providers>
+                <ThemeSwitch />
+              </Providers>
+              
             </li>
           </ul>
         </nav>

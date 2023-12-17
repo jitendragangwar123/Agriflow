@@ -13,7 +13,9 @@ const inter = Inter({
 });
 
 const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
-  const [buttonsClicked, setButtonsClicked] = useState<{ [orderId: string]: boolean; }>({});
+  const [buttonsClicked, setButtonsClicked] = useState<{
+    [orderId: string]: boolean;
+  }>({});
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 3;
 
@@ -51,25 +53,46 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
       <table className="min-w-md divide-y mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
         <thead className="bg-green-500">
           <tr>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Order ID#
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Product ID#
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Quantity
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Consumer Name
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Status
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Delivery Address
             </th>
-            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
+            <th
+              scope="col"
+              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
+            >
               Actions
             </th>
           </tr>
@@ -77,9 +100,15 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
         <tbody className="bg-green-200 text-black divide-y divide-gray-200">
           {currentRows.map((order: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.orderId)}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.productId)}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.quantity)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(order.orderId)}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(order.productId)}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(order.quantity)}
+              </td>
               <td className="px-5 py-3 whitespace-nowrap">{order.name}</td>
               <td className="px-5 py-3 whitespace-nowrap">{order.status}</td>
               <td className="px-5 py-3 whitespace-nowrap">{order.address}</td>
@@ -88,7 +117,9 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
                   <button
                     onClick={() => handleOrderAccept(order.orderId)}
                     className={`mr-2 bg-green-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-green-800 ${
-                      buttonsClicked[order.orderId] ? "opacity-50 cursor-not-allowed" : ""
+                      buttonsClicked[order.orderId]
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                     disabled={buttonsClicked[order.orderId]}
                   >
@@ -97,7 +128,9 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
                   <button
                     onClick={() => handleOrderReject(order.orderId)}
                     className={`bg-red-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-red-800 ${
-                      buttonsClicked[order.orderId] ? "opacity-50 cursor-not-allowed" : ""
+                      buttonsClicked[order.orderId]
+                        ? "opacity-50 cursor-not-allowed"
+                        : ""
                     }`}
                     disabled={buttonsClicked[order.orderId]}
                   >
@@ -132,7 +165,6 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
     </div>
   );
 };
-
 
 const DisplayProductsTable = ({ products, onPriceChange }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -193,12 +225,20 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
         <tbody className="bg-green-200 text-black divide-y divide-gray-200">
           {currentProducts.map((product: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.id)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(product.id)}
+              </td>
               <td className="px-5 py-3 whitespace-nowrap">{product.name}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.price, 10)}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.quantity, 10)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(product.price, 10)}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap">
+                {parseInt(product.quantity, 10)}
+              </td>
               <td className="mt-1 bg-green-500 text-white py-1 px-1 cursor-pointer hover:bg-green-800">
-                <button onClick={() => onPriceChange(product.id)}>Change Price</button>
+                <button onClick={() => onPriceChange(product.id)}>
+                  Change Price
+                </button>
               </td>
             </tr>
           ))}
@@ -502,17 +542,12 @@ export default function RegisterNewProducer() {
   // });
 
   return (
-    <div
-      className="w-full text-center py-5 bg-gradient-to-b from-gray-600 to-black text-white"
-    >
+    <div className="w-full text-center py-5 bg-gradient-to-b from-gray-600 to-black text-white">
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
       <div className="flex flex-row items-center justify-center h-screen">
-        <div
-         
-          className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 ml-20 max-w-2xl"
-        >
+        <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 ml-20 max-w-2xl">
           {!isRegistered && (
             <div className="p-16">
               <label
@@ -542,9 +577,7 @@ export default function RegisterNewProducer() {
           )}
         </div>
 
-        <div
-          className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 mr-20 max-w-2xl"
-        >
+        <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 mr-20 max-w-2xl">
           <div className="p-16">
             <label
               htmlFor="pName"

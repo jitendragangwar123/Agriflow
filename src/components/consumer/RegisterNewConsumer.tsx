@@ -12,7 +12,6 @@ const inter = Inter({
   display: "swap",
 });
 
-
 const DisplayOrdersStatusTable = ({ orders }: any) => {
   const [currentPage, setCurrentPage] = useState(1);
   const rowsPerPage = 5;
@@ -234,7 +233,7 @@ export default function RegisterNewConsumer() {
     displyTotalProduct();
     displyTotalOrder();
   }, [address, isConnected]);
-  
+
   const registerNewConsumer = async () => {
     if (!isRegisteredConsumer) {
       setLoading(true);
@@ -383,19 +382,19 @@ export default function RegisterNewConsumer() {
   // });
 
   return (
-    <div
-      className="w-full text-center py-20 bg-gradient-to-b from-gray-600 to-black text-white"
-    >
+    <div className="w-full text-center py-20 bg-gradient-to-b from-gray-600 to-black text-white">
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
       <div className="flex flex-row pt-2 items-center justify-center h-screen">
-
         {/* Display Tables if Consumer is Registered */}
         {isRegisteredConsumer && (
           <div className="flex mx-auto">
             <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-20 mr-20 max-w-2xl">
-              <DisplayProductsTable products={products} onOrderPlace={setIdToChange} />
+              <DisplayProductsTable
+                products={products}
+                onOrderPlace={setIdToChange}
+              />
             </div>
             <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-10 mr-5 max-w-2xl">
               <DisplayOrdersStatusTable orders={orders} />
@@ -405,9 +404,7 @@ export default function RegisterNewConsumer() {
 
         {/* Display Registration Form if Consumer is not Registered */}
         {!isRegisteredConsumer && (
-          <div
-            className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 max-w-2xl"
-          >
+          <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 max-w-2xl">
             <div className="p-16">
               <label
                 htmlFor="name"
@@ -435,7 +432,6 @@ export default function RegisterNewConsumer() {
             </div>
           </div>
         )}
-
       </div>
 
       {/* Modal or Form for Price Change */}
@@ -502,4 +498,3 @@ export default function RegisterNewConsumer() {
     </div>
   );
 }
-
