@@ -8,32 +8,12 @@ import three from "../images/3.png";
 import four from "../images/4.png";
 import five from "../images/5.png";
 import six from "../images/6_1.png";
-// import seven from '../images/1.png';
-// import eight from '../images/1.png';
-// import nine from '../images/1.png';
-// import ten from '../images/1.png';
-// import eleven from '../images/1.png';
-// import twelve from '../images/1.png';
-// import thirteen from '../images/1.png';
-// import fourteen from '../images/1.png';
-// import fifteen from '../images/1.png';
-// import sixteen from '../images/1.png';
-// import seventeen from '../images/1.png';
+
 
 const ImageSlideshow = () => {
   const [index, setIndex] = useState(0);
   const images = [one, two, three, four, five, six];
-  // seven,
-  // eight,
-  // nine,
-  // ten,
-  // eleven,
-  // twelve,
-  // thirteen,
-  // fourteen,
-  // fifteen,
-  // sixteen,
-  // seventeen]
+  
 
   useEffect(() => {
     const interval = setInterval(() => {

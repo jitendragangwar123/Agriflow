@@ -17,7 +17,7 @@ function Footer() {
           <div className="flex gap-2 justify-between max-md:flex-col max-md:text-center">
             <div className="mb-5">
               <h4 className="text-3xl pb-4 font-bold font-title">
-                agriflow
+                Agriflow
                 <span className="text-blue-400">.com</span>
               </h4>
               <p className="text-gray-500 pb-2">

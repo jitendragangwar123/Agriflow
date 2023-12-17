@@ -13,29 +13,36 @@ const inter = Inter({
 });
 
 const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
-  const [buttonsClicked, setButtonsClicked] = useState<{
-    [orderId: string]: boolean;
-  }>({});
-  const handleOrderAccept = (orderId: string) => {
-    // Check if the button has been clicked
-    if (!buttonsClicked[orderId]) {
-      // Update state to disable the button
-      setButtonsClicked((prev) => ({ ...prev, [orderId]: true }));
+  const [buttonsClicked, setButtonsClicked] = useState<{ [orderId: string]: boolean; }>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 3;
 
-      // Call your onOrderAccept function
+  const handleOrderAccept = (orderId: string) => {
+    if (!buttonsClicked[orderId]) {
+      setButtonsClicked((prev) => ({ ...prev, [orderId]: true }));
       onOrderAccept(orderId);
     }
   };
 
   const handleOrderReject = (orderId: string) => {
-    // Check if the button has been clicked
     if (!buttonsClicked[orderId]) {
-      // Update state to disable the button
       setButtonsClicked((prev) => ({ ...prev, [orderId]: true }));
-
-      // Call your onOrderReject function
       onOrderReject(orderId);
     }
+  };
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = orders.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(orders.length / rowsPerPage);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
 
   return (
@@ -44,62 +51,35 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
       <table className="min-w-md divide-y mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
         <thead className="bg-green-500">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Order ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Product ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Quantity
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Consumer Name
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Status
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Delivery Address
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th scope="col" className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
         <tbody className="bg-green-200 text-black divide-y divide-gray-200">
-          {orders.map((order: any, index: any) => (
+          {currentRows.map((order: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(order.orderId)}
-              </td>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(order.productId)}
-              </td>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(order.quantity)}
-              </td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.orderId)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.productId)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(order.quantity)}</td>
               <td className="px-5 py-3 whitespace-nowrap">{order.name}</td>
               <td className="px-5 py-3 whitespace-nowrap">{order.status}</td>
               <td className="px-5 py-3 whitespace-nowrap">{order.address}</td>
@@ -108,9 +88,7 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
                   <button
                     onClick={() => handleOrderAccept(order.orderId)}
                     className={`mr-2 bg-green-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-green-800 ${
-                      buttonsClicked[order.orderId]
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
+                      buttonsClicked[order.orderId] ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     disabled={buttonsClicked[order.orderId]}
                   >
@@ -119,9 +97,7 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
                   <button
                     onClick={() => handleOrderReject(order.orderId)}
                     className={`bg-red-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-red-800 ${
-                      buttonsClicked[order.orderId]
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
+                      buttonsClicked[order.orderId] ? "opacity-50 cursor-not-allowed" : ""
                     }`}
                     disabled={buttonsClicked[order.orderId]}
                   >
@@ -133,11 +109,49 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
           ))}
         </tbody>
       </table>
+      <div className="mt-4 flex justify-center">
+        <button
+          onClick={prevPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={nextPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
+
 const DisplayProductsTable = ({ products, onPriceChange }: any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 3;
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentProducts = products.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(products.length / rowsPerPage);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mt-4 mb-4">Product List</h2>
@@ -177,27 +191,39 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
           </tr>
         </thead>
         <tbody className="bg-green-200 text-black divide-y divide-gray-200">
-          {products.map((product: any, index: any) => (
+          {currentProducts.map((product: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(product.id)}
-              </td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.id)}</td>
               <td className="px-5 py-3 whitespace-nowrap">{product.name}</td>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(product.price, 10)}
-              </td>
-              <td className="px-5 py-3 whitespace-nowrap">
-                {parseInt(product.quantity, 10)}
-              </td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.price, 10)}</td>
+              <td className="px-5 py-3 whitespace-nowrap">{parseInt(product.quantity, 10)}</td>
               <td className="mt-1 bg-green-500 text-white py-1 px-1 cursor-pointer hover:bg-green-800">
-                <button onClick={() => onPriceChange(product.id)}>
-                  Change Price
-                </button>
+                <button onClick={() => onPriceChange(product.id)}>Change Price</button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="mt-4 flex justify-center">
+        <button
+          onClick={prevPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={nextPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
@@ -477,7 +503,7 @@ export default function RegisterNewProducer() {
 
   return (
     <div
-      className="w-full text-center py-5 bg-gradient-to-b from-gray-800 to-black text-white"
+      className="w-full text-center py-5 bg-gradient-to-b from-gray-600 to-black text-white"
     >
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform

@@ -14,10 +14,27 @@ const inter = Inter({
 
 
 const DisplayOrdersStatusTable = ({ orders }: any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentOrders = orders.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(orders.length / rowsPerPage);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
   return (
     <div>
       <h2 className="text-2xl text-black font-bold mt-4 mb-4">Order Status</h2>
-      <table className="min-w-md divide-y mx-auto  overflow-hidden shadow-md divide-gray-200">
+      <table className="min-w-md divide-y mx-auto overflow-hidden shadow-md divide-gray-200">
         <thead className="bg-green-500">
           <tr>
             <th
@@ -40,8 +57,8 @@ const DisplayOrdersStatusTable = ({ orders }: any) => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-green-200  text-black divide-y divide-gray-200">
-          {orders.map((order: any, index: any) => (
+        <tbody className="bg-green-200 text-black divide-y divide-gray-200">
+          {currentOrders.map((order: any, index: any) => (
             <tr key={index}>
               <td className="px-5 py-3 whitespace-nowrap">
                 {parseInt(order.orderId)}
@@ -52,11 +69,49 @@ const DisplayOrdersStatusTable = ({ orders }: any) => {
           ))}
         </tbody>
       </table>
+
+      <div className="mt-4 flex justify-center">
+        <button
+          onClick={prevPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={nextPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
 
 const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const rowsPerPage = 5;
+
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentProducts = products.slice(indexOfFirstRow, indexOfLastRow);
+
+  const totalPages = Math.ceil(products.length / rowsPerPage);
+
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
   return (
     <div>
       <h2 className="text-2xl text-black font-bold mt-4 mb-4">Product List</h2>
@@ -95,8 +150,8 @@ const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
             </th>
           </tr>
         </thead>
-        <tbody className="bg-green-200  text-black divide-y divide-gray-200">
-          {products.map((product: any, index: any) => (
+        <tbody className="bg-green-200 text-black divide-y divide-gray-200">
+          {currentProducts.map((product: any, index: any) => (
             <tr key={index}>
               <td className="px-5 py-3 whitespace-nowrap">
                 {parseInt(product.id)}
@@ -117,6 +172,27 @@ const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
           ))}
         </tbody>
       </table>
+
+      <div className="mt-4 flex justify-center">
+        <button
+          onClick={prevPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+        <button
+          onClick={nextPage}
+          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+            currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
+          } hover:bg-green-800"
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };
@@ -308,7 +384,7 @@ export default function RegisterNewConsumer() {
 
   return (
     <div
-      className="w-full text-center py-20 bg-gradient-to-b from-gray-800 to-black text-white"
+      className="w-full text-center py-20 bg-gradient-to-b from-gray-600 to-black text-white"
     >
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
