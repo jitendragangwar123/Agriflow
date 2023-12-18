@@ -14,7 +14,7 @@ pragma solidity >=0.7.0 <0.9.0;
 
 /**
  * @title A contract for Supply Chain Management
- * @author Jitendra Gangwar
+ * @author Team AgriFlow
  * @notice For now, this contract just show how to Supply Chain Management System work for Consumer and Producer
  */
 contract Agriflow {
@@ -30,7 +30,7 @@ contract Agriflow {
         require(bytes(producers[msg.sender]).length == 0);
         _;
     }
-
+    
     modifier addNewProductAuth() {
         require(bytes(producers[msg.sender]).length > 0);
         _;
