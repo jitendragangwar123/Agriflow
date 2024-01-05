@@ -50,8 +50,7 @@ const Header = () => {
             <li className="mr-6 mt-2">
               <Providers>
                 <ThemeSwitch />
-              </Providers>
-              
+              </Providers>           
             </li>
           </ul>
         </nav>

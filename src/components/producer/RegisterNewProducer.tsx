@@ -542,94 +542,96 @@ export default function RegisterNewProducer() {
   // });
 
   return (
-    <div className="w-full text-center py-5 bg-gradient-to-b from-gray-600 to-black text-white">
+    <div className="w-full text-center p-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
-      <div className="flex flex-row items-center justify-center h-screen">
-        <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 ml-20 max-w-2xl">
+      <div className="m-2 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+        <div className="flex flex-row items-center justify-center h-screen">
           {!isRegistered && (
-            <div className="p-16">
+            <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+              <div className="p-5">
+                <label
+                  htmlFor="name"
+                  className="block text-xl font-medium text-white"
+                >
+                  Enter Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter Name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
+                />
+                <button
+                  onClick={registerNewUser}
+                  className={`mt-4 text-white py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
+                    isRegistered ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={loading || isRegistered}
+                >
+                  {loading ? "Registering..." : "Register"}
+                </button>
+              </div>
+            </div>
+          )}
+
+          <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+            <div className="p-5">
               <label
-                htmlFor="name"
-                className="block text-xl font-medium text-gray-600"
+                htmlFor="pName"
+                className="block text-xl font-medium text-white"
               >
-                Enter your name:
+                Product Name
               </label>
               <input
                 type="text"
-                id="name"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none focus:border-blue-500"
+                id="pName"
+                placeholder="Enter Product Name"
+                value={pName}
+                onChange={(e) => setPName(e.target.value)}
+                className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
+              />
+              <label
+                htmlFor="pPrice"
+                className="block text-xl font-medium text-white mt-2"
+              >
+                Product Price
+              </label>
+              <input
+                type="text"
+                id="pPrice"
+                placeholder="Enter Product Price"
+                value={pPrice}
+                onChange={(e) => setpPrice(e.target.value)}
+                className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
+              />
+              <label
+                htmlFor="pQuantity"
+                className="block text-xl font-medium text-white mt-2"
+              >
+                Product Quantity
+              </label>
+              <input
+                type="text"
+                id="pQuantity"
+                placeholder="Enter Product Quantity"
+                value={pQuantity}
+                onChange={(e) => setpQuantity(e.target.value)}
+                className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
               />
               <button
-                onClick={registerNewUser}
-                className={`mt-4 bg-green-600 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-green-800 block mx-auto ${
-                  isRegistered ? "opacity-50 cursor-not-allowed" : ""
+                onClick={addNewProducts}
+                className={`mt-4 text-white py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
+                  isRegistered ? "" : "opacity-50 cursor-not-allowed"
                 }`}
-                disabled={loading || isRegistered}
+                disabled={loading || !isRegistered}
               >
-                {loading ? "Registering..." : "Register"}
+                {loading ? "Adding Products..." : "Add New Products"}
               </button>
             </div>
-          )}
-        </div>
-
-        <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 mb-1 mr-20 max-w-2xl">
-          <div className="p-16">
-            <label
-              htmlFor="pName"
-              className="block text-xl font-medium text-gray-600"
-            >
-              Product Name:
-            </label>
-            <input
-              type="text"
-              id="pName"
-              placeholder="Enter product name"
-              value={pName}
-              onChange={(e) => setPName(e.target.value)}
-              className="mt-3 p-2 border text-black rounded-md w-full focus:outline-none focus:border-blue-500"
-            />
-            <label
-              htmlFor="pPrice"
-              className="block text-xl font-medium text-gray-600 mt-2"
-            >
-              Product Price:
-            </label>
-            <input
-              type="text"
-              id="pPrice"
-              placeholder="Enter product price"
-              value={pPrice}
-              onChange={(e) => setpPrice(e.target.value)}
-              className="mt-3 p-2 border text-black rounded-md w-full focus:outline-none focus:border-blue-500"
-            />
-            <label
-              htmlFor="pQuantity"
-              className="block text-xl font-medium text-gray-600 mt-2"
-            >
-              Product Quantity:
-            </label>
-            <input
-              type="text"
-              id="pQuantity"
-              placeholder="Enter product quantity"
-              value={pQuantity}
-              onChange={(e) => setpQuantity(e.target.value)}
-              className="mt-3 p-2 border text-black rounded-md w-full focus:outline-none focus:border-blue-500"
-            />
-            <button
-              onClick={addNewProducts}
-              className={`mt-4 bg-green-600 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-green-800 block mx-auto ${
-                isRegistered ? "" : "opacity-50 cursor-not-allowed"
-              }`}
-              disabled={loading || !isRegistered}
-            >
-              {loading ? "Adding Products..." : "Add New Products"}
-            </button>
           </div>
         </div>
       </div>
