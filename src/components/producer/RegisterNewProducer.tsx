@@ -546,10 +546,11 @@ export default function RegisterNewProducer() {
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
-      <div className="m-2 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
-        <div className="flex flex-row items-center justify-center h-screen">
+
+      <div className="flex flex-row items-center justify-center h-screen">
+        <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {!isRegistered && (
-            <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+            <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-400 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
               <div className="p-5">
                 <label
                   htmlFor="name"
@@ -578,7 +579,7 @@ export default function RegisterNewProducer() {
             </div>
           )}
 
-          <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+          <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-400 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
             <div className="p-5">
               <label
                 htmlFor="pName"
