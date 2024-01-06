@@ -107,57 +107,46 @@ const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
 
   return (
     <div>
-      <h2 className="text-2xl text-black font-bold mt-4 mb-4">Product List</h2>
-      <table className="min-w-md divide-y mx-auto overflow-hidden shadow-md divide-gray-200">
-        <thead className="bg-green-500">
+      <table className="mt-2 min-w-md mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
+        <thead className="bg-opacity-25 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-b border-white">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Name
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Price
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Quantity
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Action
             </th>
           </tr>
         </thead>
-        <tbody className="bg-green-200 text-black divide-y divide-gray-200">
+        <tbody className="bg-opacity-25 bg-pink-300 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {currentProducts.map((product: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(product.id)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">{product.name}</td>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {product.name}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(product.price, 10)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(product.quantity, 10)}
               </td>
-              <td className="mt-1 bg-blue-500 text-white py-1 px-1 cursor-pointer hover:bg-blue-800">
-                <button onClick={() => onOrderPlace(product.id)}>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                <button
+                  onClick={() => onOrderPlace(product.id)}
+                  className={`ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-green-500 to-blue-500 hover:from-blue-500 hover:to-purple-400`}
+                >
                   Place Order
                 </button>
               </td>
@@ -169,18 +158,18 @@ const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
       <div className="mt-4 flex justify-center">
         <button
           onClick={prevPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+          className="bg-white join-item btn text-pink-600 text-lg font-medium border border-pink-600 py-0 px-2 rounded-l-lg cursor-pointer${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === 1}
         >
           Previous
         </button>
         <button
           onClick={nextPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+          className="bg-white join-item btn text-pink-500 text-lg font-medium border border-pink-500 py-0 px-4 rounded-r-lg cursor-pointer ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === totalPages}
         >
           Next
@@ -394,7 +383,7 @@ export default function RegisterNewConsumer() {
         <div className="mt-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {isRegisteredConsumer && (
             <div className="flex items-center justify-center">
-              <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+              <div>
                 <div className="flex flex-row justify-center mt-4">
                   <div
                     onClick={() => handleTableChange("products")}

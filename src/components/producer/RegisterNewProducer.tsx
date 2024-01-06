@@ -164,34 +164,19 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
       <table className="mt-2 min-w-md divide-y mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
         <thead className="bg-opacity-25 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-b border-white">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left font-medium uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left font-medium uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Name
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left font-medium uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Price
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left font-medium uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product Quantity
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left font-medium uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Actions
             </th>
           </tr>
@@ -202,7 +187,9 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
               <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(product.id)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap border-b border-white">{product.name}</td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {product.name}
+              </td>
               <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(product.price, 10)}
               </td>
@@ -210,8 +197,9 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
                 {parseInt(product.quantity, 10)}
               </td>
               <td className="px-5 py-3 whitespace-nowrap border-b border-white">
-                <button onClick={() => onPriceChange(product.id)}
-                className={`ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-green-500 to-blue-500 hover:from-blue-500 hover:to-purple-400`}
+                <button
+                  onClick={() => onPriceChange(product.id)}
+                  className={`ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-green-500 to-blue-500 hover:from-blue-500 hover:to-purple-400`}
                 >
                   Change Price
                 </button>
