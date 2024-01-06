@@ -382,56 +382,58 @@ export default function RegisterNewConsumer() {
   // });
 
   return (
-    <div className="w-full text-center py-20 bg-gradient-to-b from-gray-600 to-black text-white">
+    <div className="w-full text-center p-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
       <h1 className="text-4xl font-extrabold text-white">
         Welcome To The Platform
       </h1>
-      <div className="flex flex-row pt-2 items-center justify-center h-screen">
+      <div className="flex flex-row items-center justify-center h-screen">
         {/* Display Tables if Consumer is Registered */}
-        {isRegisteredConsumer && (
-          <div className="flex mx-auto">
-            <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-20 mr-20 max-w-2xl">
-              <DisplayProductsTable
-                products={products}
-                onOrderPlace={setIdToChange}
-              />
+        <div className="mt-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+          {isRegisteredConsumer && (
+            <div className="flex mx-auto">
+              <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-20 mr-20 max-w-2xl">
+                <DisplayProductsTable
+                  products={products}
+                  onOrderPlace={setIdToChange}
+                />
+              </div>
+              <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-10 mr-5 max-w-2xl">
+                <DisplayOrdersStatusTable orders={orders} />
+              </div>
             </div>
-            <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-10 mr-5 max-w-2xl">
-              <DisplayOrdersStatusTable orders={orders} />
-            </div>
-          </div>
-        )}
+          )}
 
-        {/* Display Registration Form if Consumer is not Registered */}
-        {!isRegisteredConsumer && (
-          <div className="max-h-md mx-auto bg-green-200 rounded-md overflow-hidden shadow-md mt-1 max-w-2xl">
-            <div className="p-16">
-              <label
-                htmlFor="name"
-                className="block text-xl font-medium text-gray-600"
-              >
-                Enter your name:
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none focus:border-blue-500"
-              />
-              <button
-                onClick={registerNewConsumer}
-                className={`mt-4 bg-green-600 text-white py-2 px-4 rounded-md cursor-pointer hover:bg-green-800 block mx-auto ${
-                  isRegisteredConsumer ? "opacity-50 cursor-not-allowed" : ""
-                }`}
-                disabled={loading || isRegisteredConsumer}
-              >
-                {loading ? "Registering..." : "Register"}
-              </button>
+          {/* Display Registration Form if Consumer is not Registered */}
+          {!isRegisteredConsumer && (
+            <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-300 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+              <div className="p-5">
+                <label
+                  htmlFor="name"
+                  className="block text-xl font-medium text-white"
+                >
+                  Enter Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
+                />
+                <button
+                  onClick={registerNewConsumer}
+                  className={`mt-4 text-white  text-xl font-bold py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
+                    isRegisteredConsumer ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  disabled={loading || isRegisteredConsumer}
+                >
+                  {loading ? "Registering..." : "Register"}
+                </button>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       {/* Modal or Form for Price Change */}
