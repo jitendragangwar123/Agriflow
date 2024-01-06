@@ -32,38 +32,32 @@ const DisplayOrdersStatusTable = ({ orders }: any) => {
 
   return (
     <div>
-      <h2 className="text-2xl text-black font-bold mt-4 mb-4">Order Status</h2>
-      <table className="min-w-md divide-y mx-auto overflow-hidden shadow-md divide-gray-200">
-        <thead className="bg-green-500">
+      <table className="mt-2 min-w-md mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
+        <thead className="bg-opacity-25 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-b border-white">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Order ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Status
             </th>
-            <th
-              scope="col"
-              className="px-5 py-5 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Delivery Address
             </th>
           </tr>
         </thead>
-        <tbody className="bg-green-200 text-black divide-y divide-gray-200">
+        <tbody className="bg-opacity-25 bg-pink-300 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {currentOrders.map((order: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(order.orderId)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">{order.status}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{order.address}</td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {order.status}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {order.address}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -72,18 +66,18 @@ const DisplayOrdersStatusTable = ({ orders }: any) => {
       <div className="mt-4 flex justify-center">
         <button
           onClick={prevPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+          className="bg-white join-item btn text-pink-600 text-lg font-medium border border-pink-600 py-0 px-2 rounded-l-lg cursor-pointer${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === 1}
         >
           Previous
         </button>
         <button
           onClick={nextPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+          className="bg-white join-item btn text-pink-500 text-lg font-medium border border-pink-500 py-0 px-4 rounded-r-lg cursor-pointer ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === totalPages}
         >
           Next
@@ -197,6 +191,15 @@ const DisplayProductsTable = ({ products, onOrderPlace }: any) => {
 };
 
 export default function RegisterNewConsumer() {
+  const [activeTable, setActiveTable] = useState("products");
+  const [buttonsClicked, setButtonsClicked] = useState<{
+    [orderId: string]: boolean;
+  }>({});
+
+  const handleTableChange = (table: string) => {
+    setActiveTable(table);
+  };
+
   const router = useRouter();
   const { addToast } = useToasts();
   const { isConnected, address } = useAccount();
@@ -320,7 +323,7 @@ export default function RegisterNewConsumer() {
       });
 
       await waitForTransaction(tx);
-      addToast(" Order placed successfully", {
+      addToast(" Order Placed Successfully", {
         appearance: "success",
         autoDismiss: true,
       });
@@ -328,7 +331,7 @@ export default function RegisterNewConsumer() {
       displyTotalProduct(); // Update the product list after changing the price
     } catch (error) {
       console.error(error);
-      addToast("Error placing the order", {
+      addToast("Error Placing the order", {
         appearance: "error",
         autoDismiss: true,
       });
@@ -390,15 +393,41 @@ export default function RegisterNewConsumer() {
         {/* Display Tables if Consumer is Registered */}
         <div className="mt-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {isRegisteredConsumer && (
-            <div className="flex mx-auto">
-              <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-20 mr-20 max-w-2xl">
-                <DisplayProductsTable
-                  products={products}
-                  onOrderPlace={setIdToChange}
-                />
-              </div>
-              <div className="max-h-md bg-green-200 rounded-md overflow-hidden shadow-md mt-1 ml-10 mr-5 max-w-2xl">
-                <DisplayOrdersStatusTable orders={orders} />
+            <div className="flex items-center justify-center">
+              <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+                <div className="flex flex-row justify-center mt-4">
+                  <div
+                    onClick={() => handleTableChange("products")}
+                    className={`mt-1 py-1 px-2 rounded-l-lg ${
+                      activeTable === "products"
+                        ? "bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 text-white text-2xl font-bold"
+                        : "bg-white text-blue-600 text-2xl font-bold border border-blue-600"
+                    }`}
+                  >
+                    Products
+                  </div>
+                  <div
+                    onClick={() => handleTableChange("orderstatus")}
+                    className={`mt-1 py-1 px-4 rounded-r-lg ${
+                      activeTable === "orderstatus"
+                        ? "bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 text-white text-2xl font-bold"
+                        : "bg-white text-blue-600 text-2xl font-bold border border-blue-600"
+                    }`}
+                  >
+                    Order Status
+                  </div>
+                </div>
+
+                {activeTable === "products" && (
+                  <DisplayProductsTable
+                    products={products}
+                    onOrderPlace={setIdToChange}
+                  />
+                )}
+
+                {activeTable === "orderstatus" && (
+                  <DisplayOrdersStatusTable orders={orders} />
+                )}
               </div>
             </div>
           )}
