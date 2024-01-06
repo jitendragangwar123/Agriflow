@@ -49,90 +49,64 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mt-4 mb-4">Order List</h2>
-      <table className="min-w-md divide-y mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
-        <thead className="bg-green-500">
+      <table className="mt-2 min-w-md mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
+        <thead className="bg-opacity-25 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white border-b border-white">
           <tr>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Order ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Product ID#
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Quantity
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
-              Consumer Name
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
+              Name
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Status
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
-              Delivery Address
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
+              Address
             </th>
-            <th
-              scope="col"
-              className="px-5 py-3 text-left text-md font-medium text-black uppercase tracking-wider"
-            >
+            <th className="px-5 py-3 text-left font-medium uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="bg-green-200 text-black divide-y divide-gray-200">
+        <tbody className="bg-opacity-25 bg-pink-300 shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {currentRows.map((order: any, index: any) => (
             <tr key={index}>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(order.orderId)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(order.productId)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 {parseInt(order.quantity)}
               </td>
-              <td className="px-5 py-3 whitespace-nowrap">{order.name}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{order.status}</td>
-              <td className="px-5 py-3 whitespace-nowrap">{order.address}</td>
-              <td className="px-5 py-3 whitespace-nowrap">
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {order.name}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {order.status}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
+                {order.address}
+              </td>
+              <td className="px-5 py-3 whitespace-nowrap border-b border-white">
                 <div className="flex items-center">
                   <button
                     onClick={() => handleOrderAccept(order.orderId)}
-                    className={`mr-2 bg-green-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-green-800 ${
-                      buttonsClicked[order.orderId]
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }`}
-                    disabled={buttonsClicked[order.orderId]}
+                    className={`ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-green-500 to-blue-500 hover:from-blue-500 hover:to-purple-400`}
                   >
                     Accept
                   </button>
                   <button
                     onClick={() => handleOrderReject(order.orderId)}
-                    className={`bg-red-500 text-white py-1 px-1 rounded-md cursor-pointer hover:bg-red-800 ${
-                      buttonsClicked[order.orderId]
-                        ? "opacity-50 cursor-not-allowed"
-                        : ""
-                    }`}
-                    disabled={buttonsClicked[order.orderId]}
+                    className={`ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-red-500 to-pink-500 hover:from-pink-500 hover:to-blue-400`}
                   >
                     Reject
                   </button>
@@ -142,21 +116,22 @@ const DisplayOrdersTable = ({ orders, onOrderAccept, onOrderReject }: any) => {
           ))}
         </tbody>
       </table>
+
       <div className="mt-4 flex justify-center">
         <button
           onClick={prevPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+          className="bg-white join-item btn text-pink-600 text-lg font-medium border border-pink-600 py-0 px-2 rounded-l-lg cursor-pointer${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === 1}
         >
           Previous
         </button>
         <button
           onClick={nextPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+          className="bg-white join-item btn text-pink-500 text-lg font-medium border border-pink-500 py-0 px-4 rounded-r-lg cursor-pointer ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === totalPages}
         >
           Next
@@ -186,7 +161,6 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mt-4 mb-4">Product List</h2>
       <table className="min-w-md divide-y mx-auto rounded-md overflow-hidden shadow-md divide-gray-200">
         <thead className="bg-green-500">
           <tr>
@@ -247,18 +221,18 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
       <div className="mt-4 flex justify-center">
         <button
           onClick={prevPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer mr-2 ${
+          className="bg-white join-item btn text-pink-600 text-lg font-medium border border-pink-600 py-0 px-2 rounded-l-lg cursor-pointer${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === 1}
         >
           Previous
         </button>
         <button
           onClick={nextPage}
-          className="bg-green-500 text-white py-1 px-2 rounded-md cursor-pointer ${
+          className="bg-white join-item btn text-pink-500 text-lg font-medium border border-pink-500 py-0 px-4 rounded-r-lg cursor-pointer ${
             currentPage === totalPages ? 'cursor-not-allowed opacity-50' : ''
-          } hover:bg-green-800"
+          } hover:bg-pink-600 hover:text-white hover:font-medium"
           disabled={currentPage === totalPages}
         >
           Next
@@ -269,6 +243,15 @@ const DisplayProductsTable = ({ products, onPriceChange }: any) => {
 };
 
 export default function RegisterNewProducer() {
+  const [activeTable, setActiveTable] = useState("products");
+  const [buttonsClicked, setButtonsClicked] = useState<{
+    [orderId: string]: boolean;
+  }>({});
+
+  const handleTableChange = (table: string) => {
+    setActiveTable(table);
+  };
+
   const router = useRouter();
   const { addToast } = useToasts();
   const { isConnected, address } = useAccount();
@@ -354,7 +337,7 @@ export default function RegisterNewProducer() {
       displyTotalProduct(); // Update the product list after adding new products
     } catch (error) {
       console.error(error);
-      addToast("Error adding new products", {
+      addToast("Error while adding new products", {
         appearance: "error",
         autoDismiss: true,
       });
@@ -401,7 +384,7 @@ export default function RegisterNewProducer() {
       setProducts(productsData);
     } catch (error) {
       console.error(error);
-      addToast("Error fetching new products", {
+      addToast("Error while fetching new products", {
         appearance: "error",
         autoDismiss: true,
       });
@@ -420,7 +403,7 @@ export default function RegisterNewProducer() {
       });
 
       await waitForTransaction(tx);
-      addToast("Price Change successful", {
+      addToast("Price Changed successful", {
         appearance: "success",
         autoDismiss: true,
       });
@@ -548,9 +531,9 @@ export default function RegisterNewProducer() {
       </h1>
 
       <div className="flex flex-row items-center justify-center h-screen">
-        <div className="m-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+        <div className="mt-5 inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
           {!isRegistered && (
-            <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-400 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+            <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-300 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
               <div className="p-5">
                 <label
                   htmlFor="name"
@@ -568,7 +551,7 @@ export default function RegisterNewProducer() {
                 />
                 <button
                   onClick={registerNewUser}
-                  className={`mt-4 text-white py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
+                  className={`mt-4 text-white  text-xl font-bold py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
                     isRegistered ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                   disabled={loading || isRegistered}
@@ -579,7 +562,7 @@ export default function RegisterNewProducer() {
             </div>
           )}
 
-          <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-400 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+          <div className="m-5 inline-block p-5 bg-opacity-25 bg-pink-300 rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
             <div className="p-5">
               <label
                 htmlFor="pName"
@@ -625,12 +608,12 @@ export default function RegisterNewProducer() {
               />
               <button
                 onClick={addNewProducts}
-                className={`mt-4 text-white py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
+                className={`mt-4 text-white  text-xl font-bold py-2 px-4 rounded-md bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 ${
                   isRegistered ? "" : "opacity-50 cursor-not-allowed"
                 }`}
                 disabled={loading || !isRegistered}
               >
-                {loading ? "Adding Products..." : "Add New Products"}
+                {loading ? "Adding Products..." : "Add Product"}
               </button>
             </div>
           </div>
@@ -638,13 +621,50 @@ export default function RegisterNewProducer() {
       </div>
 
       {/* Display Products Table */}
-      <DisplayProductsTable products={products} onPriceChange={setIdToChange} />
-      <DisplayOrdersTable
-        orders={orders}
-        onOrderAccept={orderStatusAccepted}
-        onOrderReject={orderStatusRejected}
-      />
+      <div>
+        <div className="flex items-center justify-center h-screen">
+          <div className="inline-block p-5 bg-opacity-25 bg-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
+            <div className="flex flex-row justify-center mt-4">
+              <div
+                onClick={() => handleTableChange("products")}
+                className={`mt-1 py-1 px-2 rounded-l-lg ${
+                  activeTable === "products"
+                    ? "bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 text-white text-2xl font-bold"
+                    : "bg-white text-blue-600 text-2xl font-bold border border-blue-600"
+                }`}
+              >
+                Products
+              </div>
+              <div
+                onClick={() => handleTableChange("orders")}
+                className={`mt-1 py-1 px-4 rounded-r-lg ${
+                  activeTable === "orders"
+                    ? "bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 text-white text-2xl font-bold"
+                    : "bg-white text-blue-600 text-2xl font-bold border border-blue-600"
+                }`}
+              >
+                Orders
+              </div>
+            </div>
 
+            {activeTable === "products" && (
+              <DisplayProductsTable
+                products={products}
+                onPriceChange={setIdToChange}
+              />
+            )}
+
+            {activeTable === "orders" && (
+              <DisplayOrdersTable
+                orders={orders}
+                onOrderAccept={orderStatusAccepted}
+                onOrderReject={orderStatusRejected}
+                buttonsClicked={buttonsClicked}
+              />
+            )}
+          </div>
+        </div>
+      </div>
       {/* Modal or Form for Price Change */}
       {idToChange && (
         <div className="fixed inset-0 backdrop-filter backdrop-blur-[4.9px] bg-opacity-40 flex items-center justify-center">
