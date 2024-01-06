@@ -646,13 +646,13 @@ export default function RegisterNewProducer() {
 
       {/* Modal or Form for Price Change */}
       {idToChange && (
-        <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center">
-          <div className="bg-white p-4 rounded-md">
+        <div className="fixed inset-0 backdrop-filter backdrop-blur-[4.9px] bg-opacity-40 flex items-center justify-center">
+          <div className="m-5 inline-block p-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-2xl shadow-lg backdrop-filter backdrop-blur-[4.9px] border border-opacity-20">
             <label
               htmlFor="newPrice"
-              className="block text-xl font-medium text-gray-600"
+              className="block text-xl font-medium text-white"
             >
-              Enter new price for product ID {idToChange}
+              Enter New Price{idToChange}
             </label>
             <input
               type="text"
@@ -660,17 +660,17 @@ export default function RegisterNewProducer() {
               placeholder="Enter new price"
               value={newpPrice}
               onChange={(e) => setNewpPrice(e.target.value)}
-              className="mt-3 p-2 border text-black rounded-md w-half focus:outline-none focus:border-blue-500"
+              className="mt-3 p-2 text-black border rounded-md w-full focus:outline-none border-opacity-20"
             />
             <button
               onClick={changePrice}
-              className="mt-4 ml-4 bg-green-600 text-white py-1 px-4 rounded-md cursor-pointer hover:bg-green-800"
+              className="ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-green-500 to-blue-500 hover:from-blue-500 hover:to-purple-400"
             >
               Change Price
             </button>
             <button
               onClick={() => setIdToChange("")}
-              className="mt-4 ml-1 bg-red-600 text-white py-1 px-4 rounded-md cursor-pointer hover:bg-red-800"
+              className="ml-2 mt-2 text-white py-1 px-1 rounded-md bg-gradient-to-r  from-red-500 to-pink-500 hover:from-pink-500 hover:to-blue-400 "
             >
               Cancel
             </button>
