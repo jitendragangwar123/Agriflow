@@ -5,7 +5,6 @@ import { useAccount, useContractRead } from "wagmi";
 import { readContract, waitForTransaction, writeContract } from "wagmi/actions";
 import { Inter } from "next/font/google";
 import { useRouter } from "next/router";
-//import { useSpring, animated } from "react-spring";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -264,8 +263,6 @@ export default function RegisterNewConsumer() {
         args: [],
       });
 
-      //console.log("totalProduct",totalProduct);
-
       let productsData: any = [];
       for (let i = 1; i <= totalProduct; i++) {
         const product: any = await readContract({
@@ -274,7 +271,7 @@ export default function RegisterNewConsumer() {
           functionName: "getProductById",
           args: [i],
         });
-        //console.log(product);
+        
         if (
           product[3] !== "" &&
           product[1] !== 0 &&
@@ -289,7 +286,7 @@ export default function RegisterNewConsumer() {
           });
         }
       }
-      //console.log(productsData);
+     
       setProducts(productsData);
     } catch (error) {
       console.error(error);
@@ -317,7 +314,7 @@ export default function RegisterNewConsumer() {
         autoDismiss: true,
       });
       window.location.reload();
-      displyTotalProduct(); // Update the product list after changing the price
+      displyTotalProduct(); 
     } catch (error) {
       console.error(error);
       addToast("Error Placing the order", {
@@ -366,12 +363,6 @@ export default function RegisterNewConsumer() {
     }
     setLoading(false);
   };
-
-  // const formContainerAnimation = useSpring({
-  //   opacity: 1,
-  //   from: { opacity: 0 },
-  //   delay: 200,
-  // });
 
   return (
     <div className="w-full text-center p-5 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white">
