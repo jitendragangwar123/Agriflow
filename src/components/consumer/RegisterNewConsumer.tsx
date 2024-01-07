@@ -229,6 +229,7 @@ export default function RegisterNewConsumer() {
     if (!isRegisteredConsumer) {
       setLoading(true);
       try {
+        if(name!==""){
         const tx = await writeContract({
           address: AGRIFLOW_CONTRACT_ADDRESS,
           abi: abi,
@@ -242,6 +243,12 @@ export default function RegisterNewConsumer() {
           autoDismiss: true,
         });
         window.location.reload();
+      }else{
+        addToast("Please enter valid name", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      }
       } catch (error) {
         console.error(error);
         addToast("Error during registration", {
@@ -301,6 +308,7 @@ export default function RegisterNewConsumer() {
   const placeOrder = async () => {
     setLoading(true);
     try {
+      if(idToChange!=="" && Number(buyQuantity)>0 && cName!=="" && cAddress!==""){
       const tx = await writeContract({
         address: AGRIFLOW_CONTRACT_ADDRESS,
         abi: abi,
@@ -315,6 +323,12 @@ export default function RegisterNewConsumer() {
       });
       window.location.reload();
       displyTotalProduct(); 
+    }else{
+      addToast("Please enter valid inputs", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
     } catch (error) {
       console.error(error);
       addToast("Error Placing the order", {
@@ -456,7 +470,7 @@ export default function RegisterNewConsumer() {
               Enter Quantity To Buy {idToChange}
             </label>
             <input
-              type="text"
+              type="number"
               id="buyQuantity"
               placeholder="Enter quantity"
               value={buyQuantity}

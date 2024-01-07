@@ -411,6 +411,7 @@ export default function RegisterNewProducer() {
         appearance: "success",
         autoDismiss: true,
       });
+      window.location.reload();
       displyTotalProduct(); 
     }else{
       addToast("Please enter the valid inputs", {
@@ -424,6 +425,7 @@ export default function RegisterNewProducer() {
         appearance: "error",
         autoDismiss: true,
       });
+      window.location.reload();
     }
     setLoading(false);
   };
