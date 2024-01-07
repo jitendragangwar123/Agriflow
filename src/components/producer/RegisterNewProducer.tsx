@@ -283,20 +283,28 @@ export default function RegisterNewProducer() {
     if (!isRegistered) {
       setLoading(true);
       try {
-        const tx = await writeContract({
-          address: AGRIFLOW_CONTRACT_ADDRESS,
-          abi: abi,
-          functionName: "registerNewProducer",
-          args: [name],
-        });
+        if(name!==""){
+          const tx = await writeContract({
+            address: AGRIFLOW_CONTRACT_ADDRESS,
+            abi: abi,
+            functionName: "registerNewProducer",
+            args: [name],
+          });
+  
+          await waitForTransaction(tx);
+  
+          addToast("Registration successful", {
+            appearance: "success",
+            autoDismiss: true,
+          });
+          window.location.reload();
+        }else{
+          addToast("Please Enter the valid name", {
+            appearance: "error",
+            autoDismiss: true,
+          });
+        }
 
-        await waitForTransaction(tx);
-
-        addToast("Registration successful", {
-          appearance: "success",
-          autoDismiss: true,
-        });
-        window.location.reload();
       } catch (error) {
         console.error(error);
         addToast("Error during registration", {
@@ -311,19 +319,27 @@ export default function RegisterNewProducer() {
   const addNewProducts = async () => {
     setLoading(true);
     try {
-      const tx = await writeContract({
-        address: AGRIFLOW_CONTRACT_ADDRESS,
-        abi: abi,
-        functionName: "addNewProductsInList",
-        args: [pName, pPrice, pQuantity],
-      });
+      if(pName!=="" && Number(pPrice)>0 && Number(pQuantity)>0){
+        const tx = await writeContract({
+          address: AGRIFLOW_CONTRACT_ADDRESS,
+          abi: abi,
+          functionName: "addNewProductsInList",
+          args: [pName, pPrice, pQuantity],
+        });
+  
+        await waitForTransaction(tx);
+        addToast("Products added successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        displyTotalProduct(); 
+      }else{
+        addToast("Please enter the valid inputs", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      }
 
-      await waitForTransaction(tx);
-      addToast("Products added successfully", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-      displyTotalProduct(); 
     } catch (error) {
       console.error(error);
       addToast("Error while adding new products", {
@@ -382,6 +398,7 @@ export default function RegisterNewProducer() {
   const changePrice = async () => {
     setLoading(true);
     try {
+      if(idToChange!=="" && Number(newpPrice)>0){
       const tx = await writeContract({
         address: AGRIFLOW_CONTRACT_ADDRESS,
         abi: abi,
@@ -395,6 +412,12 @@ export default function RegisterNewProducer() {
         autoDismiss: true,
       });
       displyTotalProduct(); 
+    }else{
+      addToast("Please enter the valid inputs", {
+        appearance: "error",
+        autoDismiss: true,
+      });
+    }
     } catch (error) {
       console.error(error);
       addToast("Error updating the new price", {
@@ -566,7 +589,7 @@ export default function RegisterNewProducer() {
                 Product Price
               </label>
               <input
-                type="text"
+                type="number"
                 id="pPrice"
                 placeholder="Enter Product Price"
                 value={pPrice}
@@ -580,7 +603,7 @@ export default function RegisterNewProducer() {
                 Product Quantity
               </label>
               <input
-                type="text"
+                type="number"
                 id="pQuantity"
                 placeholder="Enter Product Quantity"
                 value={pQuantity}
@@ -657,7 +680,7 @@ export default function RegisterNewProducer() {
               Enter New Price{idToChange}
             </label>
             <input
-              type="text"
+              type="number"
               id="newPrice"
               placeholder="Enter new price"
               value={newpPrice}
