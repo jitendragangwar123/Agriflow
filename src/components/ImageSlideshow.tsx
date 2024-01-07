@@ -9,7 +9,6 @@ import four from "../images/4.png";
 import five from "../images/5.png";
 import six from "../images/6_1.png";
 
-
 const ImageSlideshow = () => {
   const [index, setIndex] = useState(0);
   const images = [one, two, three, four, five, six];

@@ -35,7 +35,7 @@ const Dashboard = () => {
             <span style={{ color: "white" }}>
               Harvesting Global Wellbeing:{" "}
             </span>
-            <span className="text-green-600">
+            <span className="text-green-400">
               Cultivating a Fresh Tomorrow.
             </span>
           </>

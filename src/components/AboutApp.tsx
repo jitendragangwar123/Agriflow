@@ -16,7 +16,7 @@ const AboutApp = () => {
         <div className="mx-auto flex flex-col-reverse items-center justify-center h-full px-4 md:px-8 my-3 md:flex-row">
           <div>
             <p className="text-justify text-lg max-md:py-3 px-16 max-md:px-4 font-medium text-white">
-              <span className="text-green-600">Agriflow</span> is more than a
+              <span className="text-green-400">Agriflow</span> is more than a
               supply chain management platform it&apos;s your dedicated partner
               in cultivating success within the agricultural industry. With a
               focus on the seamless flow of agricultural goods, Agriflow is
@@ -28,9 +28,9 @@ const AboutApp = () => {
               chain solutions.
             </p>
             <p className="text-justify text-lg max-md:py-3 px-16 max-md:px-4 font-medium text-white py-10">
-              <span className="text-green-600"></span> In addition to efficient
+              <span className="text-green-400"></span> In addition to efficient
               supply chain management{" "}
-              <span className="text-green-600">Agriflow</span> integrates
+              <span className="text-green-400">Agriflow</span> integrates
               cutting-edge risk management through real-time tracking using
               Oracle for monitoring weather conditions and other critical
               factors. This innovative approach allows farmers and stakeholders

@@ -18,7 +18,7 @@ function Footer() {
             <div className="mb-5">
               <h4 className="text-3xl pb-4 font-bold font-title">
                 Agriflow
-                <span className="text-blue-400">.com</span>
+                <span className="text-green-400">.com</span>
               </h4>
               <p className="text-gray-500 pb-2">
                 Join 1000+ others and never miss out our Latest Updates.
@@ -32,7 +32,7 @@ function Footer() {
                   className="text-gray-500 w-2/3 p-2 focus:border-blue-400 max-sm:mb-2"
                   placeholder="Enter your email"
                 />
-                <button className="bg-blue-500 hover:bg-blue-700 duration-300 w-1/3 p-2 font-semibold">
+                <button className="bg-gradient-to-r  from-indigo-500 via-purple-500 to-pink-500 hover:from-pink-500 hover:to-green-400 text-white duration-300 w-1/3 p-2 font-semibold">
                   Subscribe
                 </button>
               </form>
@@ -112,7 +112,7 @@ function Footer() {
 
       <div className="bg-gray-600 text-gray-400 flex max-sm:flex-col justify-between items-center px-10 py-5 mb-auto font-semibold text-center">
         <div className="text-base">
-          © 2022-2023 Agriflow™. All Rights Reserved.
+          © 2023-2024 Agriflow™. All Rights Reserved.
         </div>
         <div className="flex justify-center items-center gap-4">
           <FaDribbble className="text-xl cursor-pointer" />
