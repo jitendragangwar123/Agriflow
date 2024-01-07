@@ -35,7 +35,7 @@ const Header = () => {
               </Link>
             </li>
             <li className="mr-6 text-complementary">
-              <Link href="/contactus">
+              <Link href="/">
                 <h3 className="relative inline-block text-2xl font-extrabold mr-0 text-lime-500 text-complementary transition-all after:absolute after:bottom-0 after:left-1/2 after:block after:h-0.5 after:w-0 after:bg-neutral after:transition-all after:content-[''] hover:text-neutral hover:after:left-0 hover:after:w-full hover:text-blue-400 focus:outline-none">
                   Contact Us
                 </h3>
