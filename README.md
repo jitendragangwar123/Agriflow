@@ -7,3 +7,4 @@ In addition to efficient supply chain management, integrates cutting-edge risk m
 Agriflow provides a platforom where Producers can list their products and Consumers can buy the listed products from the marketplace.
 
 Agriflow tackles sustainability challenges by promoting transparency, climate-smart commerce, local empowerment, carbon footprint reduction, circular economy principles, and community-driven sustainability in the context of a decentralized marketplace.
+<img width="1439" alt="Screenshot 1402-10-19 at 10 05 18" src="https://github.com/jitendragangwar123/Agriflow/assets/76531339/ac55a672-dc89-406f-b93d-e24dcb60f22f">
