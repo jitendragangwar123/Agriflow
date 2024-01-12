@@ -2,7 +2,7 @@
 pragma solidity >=0.7.0 <0.9.0;
 
 /*
-                $$$$$$\   $$$$$$\  $$$$$$$\  $$$$$$\ $$$$$$$$\ $$\       $$$$$$\  $$\      $$\ 
+                 $$$$$$\   $$$$$$\  $$$$$$$\  $$$$$$\ $$$$$$$$\ $$\       $$$$$$\  $$\      $$\ 
                 $$  __$$\ $$  __$$\ $$  __$$\ \_$$  _|$$  _____|$$ |     $$  __$$\ $$ | $\  $$ |
                 $$ /  $$ |$$ /  \__|$$ |  $$ |  $$ |  $$ |      $$ |     $$ /  $$ |$$ |$$$\ $$ |
                 $$$$$$$$ |$$ |$$$$\ $$$$$$$  |  $$ |  $$$$$\    $$ |     $$ |  $$ |$$ $$ $$\$$ |
@@ -13,7 +13,7 @@ pragma solidity >=0.7.0 <0.9.0;
 */
 
 /**
- * @title A contract for Supply Chain Management
+ * @title A contract for AgriFlow-A Supply Chain Marketplace
  * @author Team AgriFlow
  * @notice For now, this contract just show how to Supply Chain Management System work for Consumer and Producer
  */
