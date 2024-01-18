@@ -46,8 +46,6 @@ function MyApp({ Component, pageProps }: AppProps) {
           borderRadius: "medium",
           fontStack: "system",
           overlayBlur: "small",
-          backgroundColor:"#0C81A8",
-          textColor:"#FFFFFF"
         })}
         chains={chains}
       >
