@@ -41,7 +41,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RainbowKitProvider
         modalSize="compact"
         theme={darkTheme({
-          accentColor: "#7b3fe8",
+          accentColor: "#0C81A8",
           accentColorForeground: "white",
           borderRadius: "medium",
           fontStack: "system",
