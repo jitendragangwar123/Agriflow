@@ -3,7 +3,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
   RainbowKitProvider,
-  lightTheme,
+  darkTheme,
 } from "@rainbow-me/rainbowkit";
 import type { AppProps } from "next/app";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
@@ -40,8 +40,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     <WagmiConfig config={wagmiConfig}>
       <RainbowKitProvider
         modalSize="compact"
-        theme={lightTheme({
-          accentColor: "#0C81A8",
+        theme={darkTheme({
+          accentColor: "#743FCA",
           accentColorForeground: "#FFFFFF",
           borderRadius: "medium",
           fontStack: "system",
