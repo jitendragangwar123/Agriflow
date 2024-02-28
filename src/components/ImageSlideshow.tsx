@@ -8,12 +8,11 @@ import three from "../images/3.png";
 import four from "../images/4.png";
 import five from "../images/5.png";
 import six from "../images/6_1.png";
-
+// Image Slider 
 const ImageSlideshow = () => {
   const [index, setIndex] = useState(0);
   const images = [one, two, three, four, five, six];
   
-
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % images.length);
