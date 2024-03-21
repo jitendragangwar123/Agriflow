@@ -203,6 +203,7 @@ export default function RegisterNewConsumer() {
 
   const checkRegistrationStatusConsumer = async () => {
     if (isConnected) {
+      //TODO: put blockchain functions in separate files
       const registrationStatusConsumer = await readContract({
         address: AGRIFLOW_CONTRACT_ADDRESS,
         abi: abi,
