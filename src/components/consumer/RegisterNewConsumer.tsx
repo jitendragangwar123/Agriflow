@@ -202,22 +202,21 @@ export default function RegisterNewConsumer() {
   const [cAddress, setcAddress] = useState("");
 
   const checkRegistrationStatusConsumer = async () => {
-    if (isConnected) {
-      //TODO: put blockchain functions in separate files
-      const registrationStatusConsumer = await readContract({
-        address: AGRIFLOW_CONTRACT_ADDRESS,
-        abi: abi,
-        functionName: "isConsumerRegistered",
-        args: [address],
-      });
-
-      setIsRegisteredConsumer(!!registrationStatusConsumer);
-    } else {
+    if (!isConnected) {
       addToast("Connect Your Wallet First", {
         appearance: "error",
         autoDismiss: true,
       });
     }
+    //TODO: put blockchain functions in separate files
+    const registrationStatusConsumer = await readContract({
+      address: AGRIFLOW_CONTRACT_ADDRESS,
+      abi: abi,
+      functionName: "isConsumerRegistered",
+      args: [address],
+    });
+
+    setIsRegisteredConsumer(!!registrationStatusConsumer);
   };
 
   useEffect(() => {
@@ -230,26 +229,26 @@ export default function RegisterNewConsumer() {
     if (!isRegisteredConsumer) {
       setLoading(true);
       try {
-        if(name!==""){
-        const tx = await writeContract({
-          address: AGRIFLOW_CONTRACT_ADDRESS,
-          abi: abi,
-          functionName: "registerNewConsumer",
-          args: [name],
-        });
+        if (name !== "") {
+          const tx = await writeContract({
+            address: AGRIFLOW_CONTRACT_ADDRESS,
+            abi: abi,
+            functionName: "registerNewConsumer",
+            args: [name],
+          });
 
-        await waitForTransaction(tx);
-        addToast("Registration successful", {
-          appearance: "success",
-          autoDismiss: true,
-        });
-        window.location.reload();
-      }else{
-        addToast("Please enter valid name", {
-          appearance: "error",
-          autoDismiss: true,
-        });
-      }
+          await waitForTransaction(tx);
+          addToast("Registration successful", {
+            appearance: "success",
+            autoDismiss: true,
+          });
+          window.location.reload();
+        } else {
+          addToast("Please enter valid name", {
+            appearance: "error",
+            autoDismiss: true,
+          });
+        }
       } catch (error) {
         console.error(error);
         addToast("Error during registration", {
@@ -279,7 +278,7 @@ export default function RegisterNewConsumer() {
           functionName: "getProductById",
           args: [i],
         });
-        
+
         if (
           product[3] !== "" &&
           product[1] !== 0 &&
@@ -294,7 +293,7 @@ export default function RegisterNewConsumer() {
           });
         }
       }
-     
+
       setProducts(productsData);
     } catch (error) {
       console.error(error);
@@ -309,27 +308,32 @@ export default function RegisterNewConsumer() {
   const placeOrder = async () => {
     setLoading(true);
     try {
-      if(idToChange!=="" && Number(buyQuantity)>0 && cName!=="" && cAddress!==""){
-      const tx = await writeContract({
-        address: AGRIFLOW_CONTRACT_ADDRESS,
-        abi: abi,
-        functionName: "placeAnOrder",
-        args: [idToChange, buyQuantity, cName, cAddress],
-      });
+      if (
+        idToChange !== "" &&
+        Number(buyQuantity) > 0 &&
+        cName !== "" &&
+        cAddress !== ""
+      ) {
+        const tx = await writeContract({
+          address: AGRIFLOW_CONTRACT_ADDRESS,
+          abi: abi,
+          functionName: "placeAnOrder",
+          args: [idToChange, buyQuantity, cName, cAddress],
+        });
 
-      await waitForTransaction(tx);
-      addToast(" Order Placed Successfully", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-      window.location.reload();
-      displyTotalProduct(); 
-    }else{
-      addToast("Please enter valid inputs", {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
+        await waitForTransaction(tx);
+        addToast(" Order Placed Successfully", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        window.location.reload();
+        displyTotalProduct();
+      } else {
+        addToast("Please enter valid inputs", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      }
     } catch (error) {
       console.error(error);
       addToast("Error Placing the order", {
