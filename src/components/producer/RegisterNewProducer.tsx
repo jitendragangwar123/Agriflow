@@ -256,21 +256,20 @@ export default function RegisterNewProducer() {
   const [newpPrice, setNewpPrice] = useState("");
 
   const checkRegistrationStatus = async () => {
-    if (isConnected) {
-      const registrationStatus = await readContract({
-        address: AGRIFLOW_CONTRACT_ADDRESS,
-        abi: abi,
-        functionName: "isProducerRegistered",
-        args: [address],
-      });
-
-      setIsRegistered(!!registrationStatus);
-    } else {
+    if (!isConnected) {
       addToast("Connect Your Wallet First", {
         appearance: "error",
         autoDismiss: true,
       });
     }
+    const registrationStatus = await readContract({
+      address: AGRIFLOW_CONTRACT_ADDRESS,
+      abi: abi,
+      functionName: "isProducerRegistered",
+      args: [address],
+    });
+
+    setIsRegistered(!!registrationStatus);
   };
 
   useEffect(() => {
@@ -283,28 +282,27 @@ export default function RegisterNewProducer() {
     if (!isRegistered) {
       setLoading(true);
       try {
-        if(name!==""){
+        if (name !== "") {
           const tx = await writeContract({
             address: AGRIFLOW_CONTRACT_ADDRESS,
             abi: abi,
             functionName: "registerNewProducer",
             args: [name],
           });
-  
+
           await waitForTransaction(tx);
-  
+
           addToast("Registration successful", {
             appearance: "success",
             autoDismiss: true,
           });
           window.location.reload();
-        }else{
+        } else {
           addToast("Please Enter the valid name", {
             appearance: "error",
             autoDismiss: true,
           });
         }
-
       } catch (error) {
         console.error(error);
         addToast("Error during registration", {
@@ -319,27 +317,26 @@ export default function RegisterNewProducer() {
   const addNewProducts = async () => {
     setLoading(true);
     try {
-      if(pName!=="" && Number(pPrice)>0 && Number(pQuantity)>0){
+      if (pName !== "" && Number(pPrice) > 0 && Number(pQuantity) > 0) {
         const tx = await writeContract({
           address: AGRIFLOW_CONTRACT_ADDRESS,
           abi: abi,
           functionName: "addNewProductsInList",
           args: [pName, pPrice, pQuantity],
         });
-  
+
         await waitForTransaction(tx);
         addToast("Products added successfully", {
           appearance: "success",
           autoDismiss: true,
         });
-        displyTotalProduct(); 
-      }else{
+        displyTotalProduct();
+      } else {
         addToast("Please enter the valid inputs", {
           appearance: "error",
           autoDismiss: true,
         });
       }
-
     } catch (error) {
       console.error(error);
       addToast("Error while adding new products", {
@@ -368,7 +365,7 @@ export default function RegisterNewProducer() {
           functionName: "getProductbyId",
           args: [address, i],
         });
-        
+
         if (
           product[3] !== "" &&
           product[1] !== 0 &&
@@ -383,7 +380,7 @@ export default function RegisterNewProducer() {
           });
         }
       }
-     
+
       setProducts(productsData);
     } catch (error) {
       console.error(error);
@@ -398,27 +395,27 @@ export default function RegisterNewProducer() {
   const changePrice = async () => {
     setLoading(true);
     try {
-      if(idToChange!=="" && Number(newpPrice)>0){
-      const tx = await writeContract({
-        address: AGRIFLOW_CONTRACT_ADDRESS,
-        abi: abi,
-        functionName: "newPrice",
-        args: [idToChange, newpPrice],
-      });
+      if (idToChange !== "" && Number(newpPrice) > 0) {
+        const tx = await writeContract({
+          address: AGRIFLOW_CONTRACT_ADDRESS,
+          abi: abi,
+          functionName: "newPrice",
+          args: [idToChange, newpPrice],
+        });
 
-      await waitForTransaction(tx);
-      addToast("Price Changed successful", {
-        appearance: "success",
-        autoDismiss: true,
-      });
-      window.location.reload();
-      displyTotalProduct(); 
-    }else{
-      addToast("Please enter the valid inputs", {
-        appearance: "error",
-        autoDismiss: true,
-      });
-    }
+        await waitForTransaction(tx);
+        addToast("Price Changed successful", {
+          appearance: "success",
+          autoDismiss: true,
+        });
+        window.location.reload();
+        displyTotalProduct();
+      } else {
+        addToast("Please enter the valid inputs", {
+          appearance: "error",
+          autoDismiss: true,
+        });
+      }
     } catch (error) {
       console.error(error);
       addToast("Error updating the new price", {
