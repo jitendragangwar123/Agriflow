@@ -4,7 +4,7 @@ import { abi, AGRIFLOW_CONTRACT_ADDRESS } from "../../constants";
 import { useAccount, useContractRead } from "wagmi";
 import { readContract, waitForTransaction, writeContract } from "wagmi/actions";
 import { Inter } from "next/font/google";
-import { useRouter } from "next/router";
+//import { useRouter } from "next/router";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -188,7 +188,7 @@ export default function RegisterNewConsumer() {
     setActiveTable(table);
   };
 
-  const router = useRouter();
+  //const router = useRouter();
   const { addToast } = useToasts();
   const { isConnected, address } = useAccount();
   const [name, setName] = useState("");
