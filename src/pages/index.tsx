@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Layout from "../layouts/Layout";
 
-
 const Home: NextPage = () => {
   return (
     <>
@@ -11,7 +10,8 @@ const Home: NextPage = () => {
         <meta name="description" content="AgriFlow" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Layout children={undefined}>
+      <Layout>
+        <div></div>
       </Layout>
     </>
   );
