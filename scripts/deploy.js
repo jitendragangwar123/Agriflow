@@ -2,7 +2,7 @@ const ethers = require('ethers');
 require('dotenv').config();
 
 async function main() {
-    const url = process.env.MUMBAI_URL;
+    const url = process.env.SEPOLIA_URL;
     let privateKey = process.env.PRIVATE_KEY;
     let artifacts = await hre.artifacts.readArtifact("Agriflow");
     const provider = new ethers.providers.JsonRpcProvider(url);
