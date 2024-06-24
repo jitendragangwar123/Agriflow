@@ -8,7 +8,7 @@ import { Providers } from "./providers";
 const Header = () => {
   return (
     <header>
-      <div className="fixed bg-white w-full">
+      <div className="bg-white w-full">
         <div className="container flex items-center justify-between mx-auto px-4 max-w-screen-xl">
           <Link href="/">
             <Image src={companyLogo} alt="Agriflow" width="220" height="100" />
