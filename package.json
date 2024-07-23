@@ -28,6 +28,7 @@
     "react-spring": "^9.7.3",
     "react-toast-notifications": "^2.5.1",
     "slick-carousel": "^1.8.1",
+    "solidity-code-metrics": "^0.0.27",
     "viem": "~1.19.4",
     "wagmi": "~1.4.7"
   },
